@@ -31,7 +31,7 @@ Enter a White move in uppercase (time for Caps Lock!), e.g. "E2-E4" and then "PB
 ```
 ![screenshot](https://github.com/mdoege/PDP-8/raw/master/chekmo.png "screenshot")
 
-And always remember to only *watch* those pretty blinkenlights: :)
+And always remember to only *watch* those pretty blinkenlights... :)
 
 ![blinkenlights](https://github.com/mdoege/PDP-8/raw/master/Das_Blinkenlights.gif "very important blinkenlights sign")
 

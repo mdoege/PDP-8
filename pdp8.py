@@ -7,6 +7,9 @@
 # TTY interface.  It works well enough to run CHEKMO-II and that's
 # good enough for me
 #
+
+import pygame
+
 from array import array
 from signal import signal, SIGINT
 import sys
@@ -19,6 +22,12 @@ else:
     import tty
     from select import select
 
+pygame.init()
+screen = pygame.display.set_mode((1200,200))
+pygame.display.set_caption('PDP-8')
+BACK = 20,20,20
+led1 = 12*[0]
+led2 = 12*[0]
 
 class TeletypeKeyboard:
     """
@@ -585,13 +594,53 @@ def runDebugger():
                 # s - Single-step the processor
                 elif command == "s":
                     cpu.step()
+                    screen.fill(BACK)
+                    for x in range(12):
+                        if cpu._pc & (2**(11-x)):
+                            led1[x] = 1
+                        else:
+                            led1[x] = 0
+                        if cpu._ac & (2**(11-x)):
+                            led2[x] = 1
+                        else:
+                            led2[x] = 0
+                    for x in range(12):
+                        col = (int(200*led1[x]),int(200*led1[x]),0)
+                        pygame.draw.circle(screen, col,
+                                (100 * x + 50, 50), 40)
+                        col = (int(200*led2[x]),int(200*led2[x]),0)
+                        pygame.draw.circle(screen, col,
+                                (100 * x + 50, 150), 40)
+                    pygame.display.flip()
 
                 # r - Run the processor from the current PC
                 elif command == "r":
                     cpu._halted = False
                     captureTerm()
+                    upd = 0
                     while (not cpu._halted):
                         cpu.step()
+                        upd += 1
+                        if upd > 4000:
+                            upd = 0
+                            screen.fill(BACK)
+                            for x in range(12):
+                                if cpu._pc & (2**(11-x)):
+                                    led1[x] += (1-led1[x]) * .1
+                                else:
+                                    led1[x] -= led1[x] * .1
+                                if cpu._ac & (2**(11-x)):
+                                    led2[x] += (1-led2[x]) * .1
+                                else:
+                                    led2[x] -= led2[x] * .1
+                            for x in range(12):
+                                col = (int(200*led1[x]),int(200*led1[x]),0)
+                                pygame.draw.circle(screen, col,
+                                        (100 * x + 50, 50), 40)
+                                col = (int(200*led2[x]),int(200*led2[x]),0)
+                                pygame.draw.circle(screen, col,
+                                        (100 * x + 50, 150), 40)
+                            pygame.display.flip()
                     releaseTerm()
 
                 # d - Deposit a value into memory
@@ -645,6 +694,22 @@ def runDebugger():
                     else:
                         error = True           
 
+                # dump memory to text file
+                elif command == "dump":
+                    fff = open("dump.txt", "w")
+                    for n, x in enumerate(cpu._memory):
+                        fff.write("%4s: %s\n" % (oct(n)[2:], oct(x)[2:]))
+                    fff.close()
+
+                # load file
+                elif command == "load":
+                    fff = open("chekmo.load")
+                    for l in fff.readlines():
+                        aa, bb = [int(q) for q in l.split()]
+                        cpu._memory[aa] = bb
+                    fff.close()
+                    cpu._pc = 0o200
+
                 # rim - Loads the standard low-speed paper-tape RIM loader into memory
                 #       at address 7756.
                 elif command == "rim":
@@ -656,6 +721,7 @@ def runDebugger():
                                            0o7420, 0o3776, 0o3376, 0o5356 ])
 
                         cpu._memory[0o7756:0o7776] = rimLoader
+                        cpu._pc = 0o7756
 
                 # pt - Attaches a paper tape image file to the TTY interface,
                 #      or detaches the current image from same.
@@ -672,7 +738,8 @@ def runDebugger():
                 else:
                     error = True
             except:
-                    error = True
+                    raise
+                    #error = True
 
             if error:
                 print("?")  # Ken would approve
@@ -683,3 +750,5 @@ def main():
 
 if __name__=="__main__": 
     main()
+    pygame.quit()
+    

@@ -12,7 +12,7 @@ import pygame
 
 from array import array
 from signal import signal, SIGINT
-import sys
+import sys, time
 
 import os
 if os.name == 'nt':
@@ -28,6 +28,9 @@ pygame.display.set_caption('PDP-8')
 BACK = 20,20,20
 led1 = 12*[0]
 led2 = 12*[0]
+autofile, autoindex = None, -1
+autolast = 0
+AUTODELAY = .01
 
 class TeletypeKeyboard:
     """
@@ -86,6 +89,7 @@ class TeletypeKeyboard:
         If there is one, and the TTY interface isn't already busy,
         reads it and makes it available in '_char'
         """
+        global autofile, autoindex, autolast
         if not self._charReady:
             if os.name == 'nt':         
                 if msvcrt.kbhit():
@@ -100,6 +104,17 @@ class TeletypeKeyboard:
                         newChar = '\r'
                     self._charReady = True
                     self._char = ord(newChar) & 0o177           
+        if not self._charReady:
+                if autofile and autoindex > -1 and time.time() - autolast > AUTODELAY:
+                    newChar = autofile[autoindex]
+                    autoindex += 1
+                    autolast = time.time()
+                    if autoindex >= len(autofile):
+                        autoindex = -1
+                    if newChar == '\n':
+                        newChar = '\r'
+                    self._charReady = True
+                    self._char = ord(newChar) & 0o177
 
     def clock(self):
         """
@@ -709,6 +724,13 @@ def runDebugger():
                         cpu._memory[aa] = bb
                     fff.close()
                     cpu._pc = 0o200
+
+                # auto-type from text file
+                elif command == "auto":
+                    if len(tokens) == 2:
+                        global autofile, autoindex
+                        autofile = open(tokens[1]).read()
+                        autoindex = 0
 
                 # rim - Loads the standard low-speed paper-tape RIM loader into memory
                 #       at address 7756.

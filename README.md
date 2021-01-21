@@ -29,6 +29,9 @@ Enter a White move in uppercase (time for Caps Lock!), e.g. "E2-E4" and then "PB
  B. D7-D5  
  W. YOUR MOVE? 
 ```
+
+Here is a game between Stockfish and Chekmo, with analysis provided by SCID:
+
 ![screenshot](https://github.com/mdoege/PDP-8/raw/master/chekmo.png "screenshot")
 
 And always remember to only *watch* those pretty blinkenlights... :)

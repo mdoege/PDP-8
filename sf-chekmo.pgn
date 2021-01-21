@@ -1,0 +1,15 @@
+[Event "?"]
+[Site "?"]
+[Date "2021.01.21"]
+[Round "?"]
+[White "Stockfish"]
+[Black "Chekmo"]
+[Result "1-0"]
+[ECO "D06n"]
+
+1.Nf3 d5 2.d4 Bf5 3.c4 Nc6 4.cxd5 Qxd5 5.Nc3 Qa5 6.Bd2 Nf6 7.e4 Nxd4 8.
+Nxd4 Bg4 9.Ncb5 Qb6 10.Qa4 c6 11.Ba5 Qxa5+ 12.Qxa5 cxb5 13.Qxb5+ Nd7 14.
+Qxb7 Rb8 15.Qc7 e5 16.Nc6 Bc5 17.b4 Bxb4+ 18.Nxb4 O-O 19.Nc6 Rb2 20.a4 Re8
+21.f3 Be6 22.O-O-O Ra2 23.Rxd7 Bxd7 24.Qxd7 Ra8 25.Nd8 Ra1+ 26.Kb2 Ra2+ 
+27.Kxa2 h6 28.Qxf7+ Kh7 29.Ne6 Rg8 30.Ng5+ Kh8 31.Qg6 hxg5 32.Qh5# 1-0
+

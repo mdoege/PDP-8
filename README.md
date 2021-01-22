@@ -52,6 +52,11 @@ Now repeatedly enter "s" to single-step through the program and watch the accumu
 
 ## The [FOCAL](https://en.wikipedia.org/wiki/FOCAL_(programming_language)) programming language
 ```
+$ python3 pdp8.py 
+pygame 2.0.1 (SDL 2.0.14, Python 3.9.1)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+PDP-8 simulator v0.000001, (c) 2020 j. dersch
+PC 0000 AC 0000 L 0 SW 0000 IE 0
 > load focal
 PC 0200 AC 0000 L 0 SW 0000 IE 0
 > r
@@ -86,12 +91,20 @@ Use "W" to list the program and "E ALL" to delete it.
 
 The "auto" monitor command auto-types a text file into the terminal. Three FOCAL source code files are included:
 
-* fib.fc ([Fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number))
 * lunar.fc ([Lunar Lander](https://en.wikipedia.org/wiki/Lunar_Lander_(video_game_genre)))
 * ham.fc ([Hamurabi](https://en.wikipedia.org/wiki/Hamurabi_(video_game)))
+* mand.fc ([Mandelbrot set](https://en.wikipedia.org/wiki/Mandelbrot_set))
+* fib.fc ([Fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number))
 
 Note that lunar.fc and ham.fc need a lot of free RAM, so you need to answer "NO" to the FOCAL startup questions!
+
+#### Hamurabi
 ```
+$ python3 pdp8.py 
+pygame 2.0.1 (SDL 2.0.14, Python 3.9.1)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+PDP-8 simulator v0.000001, (c) 2020 j. dersch
+PC 0000 AC 0000 L 0 SW 0000 IE 0
 > load focal
 PC 0200 AC 0000 L 0 SW 0000 IE 0
 > r
@@ -111,7 +124,7 @@ PC 2670 AC 0000 L 0 SW 0000 IE 1
 > auto ham.fcl
 PC 2670 AC 0000 L 0 SW 0000 IE 1
 > r
-   .... <computer types in program text>
+   .... <computer reads program text>
 *G
 
 
@@ -132,5 +145,61 @@ WE HARVESTED=     3 BUSHELS PER ACRE;
 
 HAMURABI:  LAND IS TRADING AT=    18 BUSHELS PER ACRE;
 HOW MANY ACRES OF LAND DO YOU WISH TO BUY?
+```
+
+#### Mandelbrot set
+```
+$ python3 pdp8.py 
+pygame 2.0.1 (SDL 2.0.14, Python 3.9.1)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+PDP-8 simulator v0.000001, (c) 2020 j. dersch
+PC 0000 AC 0000 L 0 SW 0000 IE 0
+> load focal
+PC 0200 AC 0000 L 0 SW 0000 IE 0
+> r
+
+CONGRATULATIONS!!
+YOU HAVE SUCCESSFULLY LOADED 'FOCAL,1969' ON A PDP-8 COMPUTER.
+
+
+SHALL I RETAIN LOG, EXP, ATN ?:NO
+
+SHALL I RETAIN SINE, COSINE ?:NO
+
+PROCEED.
+
+*CTRL-C halt
+PC 2671 AC 0000 L 0 SW 0000 IE 1
+> auto mand.fc
+PC 2671 AC 0000 L 0 SW 0000 IE 1
+> r
+   .... <computer reads program text>
+
+*G
+
+**********************************************************************
+**********************************************************************
+**************************************************** *****************
+*************************************************      ***************
+*************************************************      ***************
+****************************************    *               **********
+*************************************** *                       ******
+*************************************                            *****
+********************** **** *******                               ****
+***********************          **                                 **
+*********************                                             ****
+*** *                                                          *******
+*********************                                             ****
+***********************          **                                 **
+********************** **** *******                               ****
+*************************************                            *****
+*************************************** *                       ******
+****************************************    *               **********
+*************************************************      ***************
+*************************************************      ***************
+**************************************************** *****************
+**********************************************************************
+**********************************************************************
+**********************************************************************
 ```
 

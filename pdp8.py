@@ -635,6 +635,8 @@ def runDebugger():
                     upd = 0
                     while (not cpu._halted):
                         cpu.step()
+                        for event in pygame.event.get():
+                            if event.type == pygame.QUIT: sys.exit()
                         upd += 1
                         if upd > 4000:
                             upd = 0

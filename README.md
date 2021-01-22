@@ -1,12 +1,12 @@
 # PDP-8
 
-A fork of the Python PDP-8 emulator with Blinkenlights. Needs PyGame.
+A fork of the Python [PDP-8](https://en.wikipedia.org/wiki/PDP-8) emulator with added [Blinkenlights](https://en.wikipedia.org/wiki/Blinkenlights). Needs [PyGame](https://www.pygame.org/).
 
 The top row of lights shows the program counter and the bottom row the accumulator.
 
 To quit the program, press Ctrl+C to return to the monitor, then q.
 
-## Running the Chekmo chess program
+## Running the [Chekmo](https://www.chessprogramming.org/CHEKMO-II) chess program
 ```
  python3 pdp8.py
  load
@@ -30,11 +30,11 @@ Enter a White move in uppercase (time for Caps Lock!), e.g. "E2-E4" and then "PB
  W. YOUR MOVE? 
 ```
 
-Here is a game between Stockfish and Chekmo, with analysis provided by SCID:
+Here is a game between Stockfish and Chekmo, with analysis provided by [SCID](http://scidvspc.sourceforge.net/):
 
 ![screenshot](https://github.com/mdoege/PDP-8/raw/master/chekmo.png "screenshot")
 
-And always remember to only *watch* those pretty blinkenlights... :)
+But always remember to only *watch* those pretty blinkenlights... :)
 
 ![blinkenlights](https://github.com/mdoege/PDP-8/raw/master/Das_Blinkenlights.gif "very important blinkenlights sign")
 
@@ -45,21 +45,31 @@ And always remember to only *watch* those pretty blinkenlights... :)
  rim
  pt shifter.rim
  r
- <Ctrl-C> when loading has finished
+     Press <Ctrl-C> when loading has finished
  pc 100
 ```
 Now repeatedly enter "s" to single-step through the program and watch the accumulator increase every few steps.
 
-### FOCAL
+## The [FOCAL](https://en.wikipedia.org/wiki/FOCAL_(programming_language)) programming language
 ```
- rim
- pt focal-2.rim
- r
- <Ctrl-C> when loading has finished
- pc 200
- r
+> load focal
+PC 0200 AC 0000 L 0 SW 0000 IE 0
+> r
+
+CONGRATULATIONS!!
+YOU HAVE SUCCESSFULLY LOADED 'FOCAL,1969' ON A PDP-8 COMPUTER.
+
+
+SHALL I RETAIN LOG, EXP, ATN ?:NO
+
+SHALL I RETAIN SINE, COSINE ?:NO
+
+PROCEED.
+
+*W
+C-FOCAL,1969
 ```
-Now enter some FOCAL code at the "*" prompt, e.g. this **F**OR loop which **T**YPEs numbers:
+Now enter some FOCAL code at the "*" prompt, e.g. this **F**OR loop which **T**YPEs numbers, and then use **G**OTO to run the program. (In FOCAL, commands can be abbreviated by just using their first character.)
 ```
  *1.1 F X=1,1,5; T X,!
  *G
@@ -69,55 +79,58 @@ Now enter some FOCAL code at the "*" prompt, e.g. this **F**OR loop which **T**Y
  =    4.0000
  =    5.0000
 ```
-Or compute the square root of 2:
-```
- *T FSQT(2)
- =    1.4142*
-```
 
-### Loading external text files into the PDP-8
+Use "W" to list the program and "E ALL" to delete it.
 
-The "auto" monitor command auto-types a text file into the terminal. You can e.g. load external code into FOCAL this way:
+### Loading external code into FOCAL
+
+The "auto" monitor command auto-types a text file into the terminal. Three FOCAL source code files are included:
+
+* fib.fc ([Fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number))
+* lunar.fc ([Lunar Lander](https://en.wikipedia.org/wiki/Lunar_Lander_(video_game_genre)))
+* ham.fc ([Hamurabi](https://en.wikipedia.org/wiki/Hamurabi_(video_game)))
+
+Note that lunar.fc and ham.fc need a lot of free RAM, so you need to answer "NO" to the FOCAL startup questions!
 ```
-*CTRL-C halt
-PC 2667 AC 0000 L 1 SW 0000 IE 1
-> auto fib.fc
-PC 2667 AC 0000 L 1 SW 0000 IE 1
+> load focal
+PC 0200 AC 0000 L 0 SW 0000 IE 0
 > r
-01.10 TYPE "FIBONACCI NUMBERS" !
-*01.20 ASK "MAX N =", N
-*01.30 SET A=0
-*01.40 SET B=1
-*01.50 FOR I=2,N; DO 2.0
-*01.60 QUIT
-* 
-*02.10 SET T=B
-*02.20 SET B=A+B
-*02.30 SET A=T
-*02.40 TYPE "F(",I,") ", %8, B, !
-*
+
+CONGRATULATIONS!!
+YOU HAVE SUCCESSFULLY LOADED 'FOCAL,1969' ON A PDP-8 COMPUTER.
+
+
+SHALL I RETAIN LOG, EXP, ATN ?:NO
+
+SHALL I RETAIN SINE, COSINE ?:NO
+
+PROCEED.
+
+*CTRL-C halt
+PC 2670 AC 0000 L 0 SW 0000 IE 1
+> auto ham.fcl
+PC 2670 AC 0000 L 0 SW 0000 IE 1
+> r
+   .... <computer types in program text>
 *G
-FIBONACCI NUMBERS
-MAX N =:20
-F(=        2) =        1
-F(=        3) =        2
-F(=        4) =        3
-F(=        5) =        5
-F(=        6) =        8
-F(=        7) =       13
-F(=        8) =       21
-F(=        9) =       34
-F(=       10) =       55
-F(=       11) =       89
-F(=       12) =      144
-F(=       13) =      233
-F(=       14) =      377
-F(=       15) =      610
-F(=       16) =      987
-F(=       17) =     1597
-F(=       18) =     2584
-F(=       19) =     4181
-F(=       20) =     6765
-*
+
+
+HAMURABI:  
+
+
+LAST YEAR
+=     0 STARVED,
+=     5 ARRIVED,
+POPULATION IS=   100
+
+THE CITY OWNS=  1000 ACRES.
+
+WE HARVESTED=     3 BUSHELS PER ACRE;
+ RATS ATE =   200 BUSHELS, YOU NOW HAVE
+=  2800 BUSHELS IN STORE.
+
+
+HAMURABI:  LAND IS TRADING AT=    18 BUSHELS PER ACRE;
+HOW MANY ACRES OF LAND DO YOU WISH TO BUY?
 ```
 

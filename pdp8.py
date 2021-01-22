@@ -30,7 +30,7 @@ led1 = 12*[0]
 led2 = 12*[0]
 autofile, autoindex = None, -1
 autolast = 0
-AUTODELAY = .01
+AUTODELAY = .02
 
 class TeletypeKeyboard:
     """
@@ -718,7 +718,10 @@ def runDebugger():
 
                 # load file
                 elif command == "load":
-                    fff = open("chekmo.load")
+                    if "focal" in tokens:
+                        fff = open("focal-8.load")
+                    else:
+                        fff = open("chekmo.load")
                     for l in fff.readlines():
                         aa, bb = [int(q) for q in l.split()]
                         cpu._memory[aa] = bb

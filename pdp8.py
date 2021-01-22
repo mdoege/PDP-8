@@ -31,6 +31,7 @@ led2 = 12*[0]
 autofile, autoindex = None, -1
 autolast = 0
 AUTODELAY = .02
+SHOWMIPS = False
 
 class TeletypeKeyboard:
     """
@@ -633,11 +634,19 @@ def runDebugger():
                     cpu._halted = False
                     captureTerm()
                     upd = 0
+                    lastmips, inst = 0, 0
                     while (not cpu._halted):
                         cpu.step()
                         for event in pygame.event.get():
                             if event.type == pygame.QUIT: sys.exit()
                         upd += 1
+                        inst += 1
+                        tt = time.time()
+                        if tt - lastmips > 3:
+                            if SHOWMIPS:
+                                print("---> %.2f MIPS" % (1e-6 * inst / (tt - lastmips)))
+                            inst = 0
+                            lastmips = tt
                         if upd > 4000:
                             upd = 0
                             screen.fill(BACK)

@@ -23,7 +23,7 @@ else:
     from select import select
 
 pygame.init()
-XSIZE, YSIZE, LEDR = 1300, 562, 25
+XSIZE, YSIZE, LEDR = 1300, 562, 30
 YROW1, YROW2 = YSIZE - 250, YSIZE - 50
 screen = pygame.display.set_mode((XSIZE, YSIZE))
 pygame.display.set_caption('PDP-8')

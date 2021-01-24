@@ -23,11 +23,13 @@ else:
     from select import select
 
 pygame.init()
-screen = pygame.display.set_mode((1200,200))
+XSIZE, YSIZE, LEDR = 1300, 562, 25
+YROW1, YROW2 = YSIZE - 250, YSIZE - 50
+screen = pygame.display.set_mode((XSIZE, YSIZE))
 pygame.display.set_caption('PDP-8')
-BACK = 20,20,20
+panelback = pygame.image.load("panel.png")
 led1 = 12*[0]
-led2 = 12*[0]
+led2 = 13*[0]
 autofile, autoindex = None, -1
 autolast = 0
 AUTODELAY = .02
@@ -610,7 +612,7 @@ def runDebugger():
                 # s - Single-step the processor
                 elif command == "s":
                     cpu.step()
-                    screen.fill(BACK)
+                    screen.blit(panelback, (0, 0))
                     for x in range(12):
                         if cpu._pc & (2**(11-x)):
                             led1[x] = 1
@@ -623,10 +625,17 @@ def runDebugger():
                     for x in range(12):
                         col = (int(200*led1[x]),int(200*led1[x]),0)
                         pygame.draw.circle(screen, col,
-                                (100 * x + 50, 50), 40)
+                                (100 * x + 150, YROW1), LEDR)
                         col = (int(200*led2[x]),int(200*led2[x]),0)
                         pygame.draw.circle(screen, col,
-                                (100 * x + 50, 150), 40)
+                                (100 * x + 150, YROW2), LEDR)
+                    if cpu._l:
+                        led2[12] = 1
+                    else:
+                        led2[12] = 0
+                    col = (int(200*led2[12]),int(200*led2[12]),0)
+                    pygame.draw.circle(screen, col,
+                            (50, YROW2), LEDR)
                     pygame.display.flip()
 
                 # r - Run the processor from the current PC
@@ -649,7 +658,7 @@ def runDebugger():
                             lastmips = tt
                         if upd > 4000:
                             upd = 0
-                            screen.fill(BACK)
+                            screen.blit(panelback, (0, 0))
                             for x in range(12):
                                 if cpu._pc & (2**(11-x)):
                                     led1[x] += (1-led1[x]) * .1
@@ -662,10 +671,17 @@ def runDebugger():
                             for x in range(12):
                                 col = (int(200*led1[x]),int(200*led1[x]),0)
                                 pygame.draw.circle(screen, col,
-                                        (100 * x + 50, 50), 40)
+                                        (100 * x + 150, YROW1), LEDR)
                                 col = (int(200*led2[x]),int(200*led2[x]),0)
                                 pygame.draw.circle(screen, col,
-                                        (100 * x + 50, 150), 40)
+                                        (100 * x + 150, YROW2), LEDR)
+                            if cpu._l:
+                                led2[12] += (1-led2[12]) * .1
+                            else:
+                                led2[12] -= led2[12] * .1
+                            col = (int(200*led2[12]),int(200*led2[12]),0)
+                            pygame.draw.circle(screen, col,
+                                    (50, YROW2), LEDR)
                             pygame.display.flip()
                     releaseTerm()
 

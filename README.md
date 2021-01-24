@@ -1,5 +1,7 @@
 # PDP-8
 
+![screenshot](https://github.com/mdoege/PDP-8/raw/master/screenshot.png "screenshot")
+
 A fork of the Python [PDP-8](https://en.wikipedia.org/wiki/PDP-8) emulator with added [Blinkenlights](https://en.wikipedia.org/wiki/Blinkenlights). Needs [PyGame](https://www.pygame.org/).
 
 The top row of lights shows the program counter and the bottom row the accumulator.
@@ -32,7 +34,7 @@ Enter a White move in uppercase (time for Caps Lock!), e.g. "E2-E4" and then "PB
 
 Here is a game between Stockfish and Chekmo, with analysis provided by [SCID](http://scidvspc.sourceforge.net/):
 
-![screenshot](https://github.com/mdoege/PDP-8/raw/master/chekmo.png "screenshot")
+![chekmo](https://github.com/mdoege/PDP-8/raw/master/chekmo.png "chekmo")
 
 But always remember to only *watch* those pretty blinkenlights... :)
 

@@ -6,7 +6,9 @@ A fork of the Python [PDP-8](https://en.wikipedia.org/wiki/PDP-8) emulator with 
 
 The top row of lights shows the program counter and the bottom row the accumulator.
 
-To quit the program, press Ctrl+C to return to the monitor, then q.
+To quit the program, press Ctrl+C to return to the monitor, then enter q.
+
+PDP-8 front panel photo by [David Gesswein](https://www.pdp8online.com/straight8/front_panel_restore.shtml).
 
 ## Running the [Chekmo](https://www.chessprogramming.org/CHEKMO-II) chess program
 ```

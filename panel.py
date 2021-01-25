@@ -4,17 +4,17 @@ from PIL import Image, ImageDraw, ImageFont
 
 w, h, s = 1300, 562, 60
 
-fnt = ImageFont.truetype('Arimo-Bold.ttf', 30)
+fnt = ImageFont.truetype('fonts/generic-Medium.otf', 30)
 
 im = Image.open("panel_top.png")
 
 d = ImageDraw.Draw(im)
 
-d.text((585, h - 200 + s), "ACCUMULATOR", font = fnt, fill = (255,255,255,255), align = "center")
+d.text((575, h - 200 + s), "ACCUMULATOR", font = fnt, fill = (255,255,255,255), align = "center")
 
-d.text((15, h - 200 + s), "LINK", font = fnt, fill = (255,255,255,255), align = "center")
+d.text((10, h - 200 + s), "LINK", font = fnt, fill = (255,255,255,255), align = "center")
 
-d.text((540, h - 400 + s), "PROGRAM COUNTER", font = fnt, fill = (255,255,255,255), align = "center")
+d.text((530, h - 400 + s), "PROGRAM COUNTER", font = fnt, fill = (255,255,255,255), align = "center")
 
 for i in range(5):
     x = 300 * i + 95

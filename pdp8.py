@@ -32,7 +32,7 @@ led1 = 12*[0]
 led2 = 13*[0]
 autofile, autoindex = None, -1
 autolast = 0
-AUTODELAY = .02
+AUTODELAY = .05
 SHOWMIPS = False
 
 class TeletypeKeyboard:

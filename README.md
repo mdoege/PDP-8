@@ -93,7 +93,9 @@ Use "W" to list the program and "E ALL" to delete it.
 
 ### Loading external code into FOCAL
 
-The "auto" monitor command auto-types a text file into the terminal. Three FOCAL source code files are included:
+The "auto" monitor command auto-types a text file into the terminal. If you are getting errors during input such as "?11.35" or "?01.40", you need to increase the value of AUTODELAY in the script, e.g. "AUTODELAY=.1".
+
+Several FOCAL source code files are included:
 
 * lunar.fc ([Lunar Lander](https://en.wikipedia.org/wiki/Lunar_Lander_(video_game_genre)))
 * ham.fc ([Hamurabi](https://en.wikipedia.org/wiki/Hamurabi_(video_game)))

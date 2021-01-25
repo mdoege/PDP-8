@@ -646,8 +646,9 @@ def runDebugger():
                     lastmips, inst = 0, 0
                     while (not cpu._halted):
                         cpu.step()
-                        for event in pygame.event.get():
-                            if event.type == pygame.QUIT: sys.exit()
+                        if upd % 1000 == 0:
+                            for event in pygame.event.get():
+                                if event.type == pygame.QUIT: sys.exit()
                         upd += 1
                         inst += 1
                         tt = time.time()
@@ -656,7 +657,7 @@ def runDebugger():
                                 print("---> %.2f MIPS" % (1e-6 * inst / (tt - lastmips)))
                             inst = 0
                             lastmips = tt
-                        if upd > 4000:
+                        if upd > 12000:
                             upd = 0
                             screen.blit(panelback, (0, 0))
                             for x in range(12):

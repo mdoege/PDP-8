@@ -100,6 +100,7 @@ The "auto" monitor command auto-types a text file into the terminal. Three FOCAL
 * mand.fc ([Mandelbrot set](https://en.wikipedia.org/wiki/Mandelbrot_set))
 * fib.fc ([Fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number))
 * eras.fc ([Sieve of Eratosthenes](https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes))
+* pas.fc ([Pascal's triangle](https://en.wikipedia.org/wiki/Pascal%27s_triangle))
 
 Note that lunar.fc and ham.fc need a lot of free RAM, so you need to answer "NO" to the FOCAL startup questions!
 

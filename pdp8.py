@@ -207,7 +207,7 @@ class TeletypePrinter:
             if autoindex < 0:
                 if ac & 0o177 == 13:
                     asr_return.play()
-                else:
+                if ac & 0o177 > 31:
                     asr33.play()
                 self._timelast = time.time()
             sys.stdout.flush()            
@@ -220,7 +220,7 @@ class TeletypePrinter:
             if autoindex < 0:
                 if ac & 0o177 == 13:
                     asr_return.play()
-                else:
+                if ac & 0o177 > 31:
                     asr33.play()
                 self._timelast = time.time()
             sys.stdout.flush()                

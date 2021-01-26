@@ -16,7 +16,7 @@ PDP-8 front panel photo by [David Gesswein](https://www.pdp8online.com/straight8
  load
  r
 ```
-Enter a White move in uppercase (time for Caps Lock!), e.g. "E2-E4" and then "PB" for the computer to play Black.
+Enter a White move, e.g. "E2-E4" and then "PB" for the computer to play Black.
 ```
  $ python3 pdp8.py
  pygame 2.0.1 (SDL 2.0.14, Python 3.9.1)

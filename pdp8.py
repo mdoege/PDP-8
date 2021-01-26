@@ -118,6 +118,9 @@ class TeletypeKeyboard:
                         newChar = '\r'
                     self._charReady = True
                     self._char = ord(newChar) & 0o177
+        # convert to uppercase
+        if self._charReady and self._char > 0o137:
+            self._char -= 0o40
 
     def clock(self):
         """

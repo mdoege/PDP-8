@@ -23,6 +23,7 @@ else:
     from select import select
 
 pygame.init()
+pygame.mixer.init()
 XSIZE, YSIZE, LEDR = 1300, 562, 30
 YROW1, YROW2 = YSIZE - 250, YSIZE - 50
 screen = pygame.display.set_mode((XSIZE, YSIZE))
@@ -34,6 +35,8 @@ autofile, autoindex = None, -1
 autolast = 0
 AUTODELAY = .05
 SHOWMIPS = False
+asr33 = pygame.mixer.Sound("sounds/asr33.wav")
+asr_return = pygame.mixer.Sound("sounds/asr-return.wav")
 
 class TeletypeKeyboard:
     """
@@ -170,6 +173,7 @@ class TeletypePrinter:
         self._flag = True
         self._outputPending = False
         self._interrupt = False        
+        self._timelast = 0
 
     def IOT(self, opcode, ac):
         """
@@ -200,6 +204,12 @@ class TeletypePrinter:
         if function == 4:               # TPC
             self._outputPending = True
             sys.stdout.write(chr(ac & 0o177))
+            if autoindex < 0:
+                if ac & 0o177 == 13:
+                    asr_return.play()
+                else:
+                    asr33.play()
+                self._timelast = time.time()
             sys.stdout.flush()            
 
         if function == 6:               # TLS            
@@ -207,6 +217,12 @@ class TeletypePrinter:
             self._interrupt = False
             self._outputPending = True
             sys.stdout.write(chr(ac & 0o177))
+            if autoindex < 0:
+                if ac & 0o177 == 13:
+                    asr_return.play()
+                else:
+                    asr33.play()
+                self._timelast = time.time()
             sys.stdout.flush()                
 
         return skip, False, 0
@@ -216,7 +232,7 @@ class TeletypePrinter:
         Clocks the Printer output logic:
         Sets the "output ready" flag as necessary.
         """
-        if not self._flag and self._outputPending:            
+        if not self._flag and self._outputPending and time.time() - self._timelast > .1:    
             self._flag = True
             self._interrupt = True
             self._outputPending = False

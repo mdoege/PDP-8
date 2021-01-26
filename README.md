@@ -8,7 +8,7 @@ The top row of lights shows the program counter and the bottom row the accumulat
 
 To quit the program, press Ctrl+C to return to the monitor, then enter q.
 
-PDP-8 front panel photo by [David Gesswein](https://www.pdp8online.com/straight8/front_panel_restore.shtml).
+PDP-8 front panel photo by [David Gesswein](https://www.pdp8online.com/straight8/front_panel_restore.shtml). ASR-33 teletype sounds by [262LongRunner@YouTube](https://www.youtube.com/watch?v=ObgXrIYKQjc).
 
 ## Running the [Chekmo](https://www.chessprogramming.org/CHEKMO-II) chess program
 ```

@@ -12,7 +12,7 @@ import pygame
 
 from array import array
 from signal import signal, SIGINT
-import sys, time
+import os, sys, time
 
 import os
 if os.name == 'nt':
@@ -35,8 +35,8 @@ autofile, autoindex = None, -1
 autolast = 0
 AUTODELAY = .05
 SHOWMIPS = False
-asr33 = pygame.mixer.Sound("sounds/asr33.wav")
-asr_return = pygame.mixer.Sound("sounds/asr-return.wav")
+asr33 = pygame.mixer.Sound(os.path.join("sounds", "asr33.wav"))
+asr_return = pygame.mixer.Sound(os.path.join("sounds", "asr-return.wav"))
 
 class TeletypeKeyboard:
     """

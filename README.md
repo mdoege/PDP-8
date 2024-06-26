@@ -97,7 +97,7 @@ The "auto" monitor command auto-types a text file into the terminal. If you are 
 
 Several FOCAL source code files are included:
 
-* lunar.fc ([Lunar Lander](https://en.wikipedia.org/wiki/Lunar_Lander_(video_game_genre))) with the [2024 bug fix](https://martincmartin.com/2024/06/14/how-i-found-a-55-year-old-bug-in-the-first-lunar-lander-game/)
+* lunar.fc ([Lunar Lander](https://en.wikipedia.org/wiki/Lunar_Lander_(video_game_genre)))
 * ham.fc ([Hamurabi](https://en.wikipedia.org/wiki/Hamurabi_(video_game)))
 * mand.fc ([Mandelbrot set](https://en.wikipedia.org/wiki/Mandelbrot_set))
 * fib.fc ([Fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number))

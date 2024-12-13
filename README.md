@@ -1,6 +1,6 @@
 # PDP-8
 
-![screenshot](https://github.com/mdoege/PDP-8/raw/master/screenshot.png "screenshot")
+![screenshot](screenshot.png "screenshot")
 
 A fork of the Python [PDP-8](https://en.wikipedia.org/wiki/PDP-8) emulator with added [Blinkenlights](https://en.wikipedia.org/wiki/Blinkenlights). Needs [PyGame](https://www.pygame.org/).
 
@@ -36,11 +36,11 @@ Enter a White move, e.g. "E2-E4" and then "PB" for the computer to play Black.
 
 Here is a game between Stockfish and Chekmo, with analysis provided by [SCID](http://scidvspc.sourceforge.net/):
 
-![chekmo](https://github.com/mdoege/PDP-8/raw/master/chekmo.png "chekmo")
+![chekmo](chekmo.png "chekmo")
 
 But always remember to only *watch* those pretty blinkenlights... :)
 
-![blinkenlights](https://github.com/mdoege/PDP-8/raw/master/Das_Blinkenlights.gif "very important blinkenlights sign")
+![blinkenlights](Das_Blinkenlights.gif "very important blinkenlights sign")
 
 ## Running RIM tape files
 
